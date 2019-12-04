@@ -1,0 +1,61 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.6
+
+Style/Documentation:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+  EnforcedStyle: literal
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/BracesAroundHashParameters:
+  Enabled: true
+  EnforcedStyle: context_dependent
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - db/migrate/*
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 100
+  IgnoredPatterns:
+    - '#\s.*'
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - config/**/*
+    - spec/**/*
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: false

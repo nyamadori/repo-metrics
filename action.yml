@@ -1,0 +1,5 @@
+name: repo-metrics
+author: nyamadori
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
