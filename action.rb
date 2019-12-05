@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
-require_relative './lib/lib'
+require 'active_support'
+require 'active_support/all'
 
-puts 'hello!!!'
+require_relative './lib/metrics_comment_service'
+
+event_payload = JSON.parse(File.read(GITHUB_EVENT_PATH))
+
+MetricsCommentService.execute(event_payload)
