@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './github_api'
+
 class MetricsCommentService
   def self.execute(event_payload)
     return unless event_payload[:pull_request][:merged_at]
