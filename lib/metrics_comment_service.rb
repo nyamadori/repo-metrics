@@ -14,10 +14,12 @@ class MetricsCommentService
     login = event_payload[:repository][:owner][:login]
     repo = event_payload[:repository][:name]
 
-    pr = GitHubApi.query(
+    res = GitHubApi.query(
       GitHubApi::PullRequestWithFirstCommitQuery,
       variables: { login: login, repo: repo, number: pr_number },
-    ).data.viewer.organization.repository.pull_request
+    )
+    p res
+    pr = res.data.viewer.organization.repository.pull_request
 
     merged_at = Time.parse(event_payload[:pull_request][:merged_at]).getlocal
     first_committed_at = pr.commits.nodes.first.commit.committed_date
