@@ -7,7 +7,7 @@ module GitHubApi
   HTTP = GraphQL::Client::HTTP.new('https://api.github.com/graphql') do
     def headers(_)
       {
-        'Authorization' => "Bearer #{ENV['ACCESS_TOKEN']}",
+        'Authorization' => "Bearer #{ENV['GITHUB_TOKEN']}",
       }
     end
 
