@@ -13,6 +13,7 @@ class MetricsCommentService
   def self.collect_merge_time(event_payload)
     login = event_payload[:repository][:owner][:login]
     repo = event_payload[:repository][:name]
+    pr_number = event_payload[:pull_request][:number]
 
     res = GitHubApi.query(
       GitHubApi::PullRequestWithFirstCommitQuery,
