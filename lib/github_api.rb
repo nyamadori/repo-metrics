@@ -23,7 +23,7 @@ module GitHubApi
   Client = GraphQL::Client.new(schema: Schema, execute: HTTP)
 
   PullRequestWithFirstCommitQuery = GitHubApi::Client.parse <<~GRAPHQL
-    query($after: String) {
+    query {
       viewer {
         organization(login: $login) {
           repository(name: $repo) {
