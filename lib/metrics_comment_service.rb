@@ -2,6 +2,8 @@
 
 class MetricsCommentService
   def self.execute(event_payload)
+    return unless event_payload[:pull_request][:merged_at]
+
     pr_id = event_payload[:pull_request][:node_id]
     comment_metrics(pr_id, collect_merge_time(event_payload))
   end
