@@ -8,7 +8,7 @@ class MetricsCommentService
     comment_metrics(pr_id, collect_merge_time(event_payload))
   end
 
-  private_class_method :merge_time, :comment_metrics
+  private_class_method :collect_merge_time, :comment_metrics
 
   def self.collect_merge_time(event_payload)
     login = event_payload[:repository][:owner][:login]
