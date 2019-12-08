@@ -39,8 +39,8 @@ module GitHubApi
   GRAPHQL
 
   AddCommentMutation = GitHubApi::Client.parse <<~GRAPHQL
-    mutation($subjectId: ID!, $body: String!) {
-      addComment(input: { subjectId: $subjectId, body: $body }) {
+    mutation($subject_id: ID!, $body: String!) {
+      addComment(input: { subjectId: $subject_id, body: $body }) {
         commentEdge {
           node {
             body
