@@ -25,11 +25,11 @@ class MetricsCommentService
     merged_at = Time.parse(event_payload[:pull_request][:merged_at]).getlocal
     first_committed_at = Time.parse(pr.commits.nodes.first.commit.committed_date).getlocal
 
-    (merged_at - first_committed_at) / 3600
+    ActiveSupport::Duration.build(merged_at - first_committed_at)
   end
 
   def self.comment_metrics(pull_request_id, merge_time)
-    body = "Elapsed time to merge: #{merge_time} hours"
+    body = "Elapsed time to merge: #{merge_time.inspect}"
 
     GitHubApi.query(
       GitHubApi::AddCommentMutation,
