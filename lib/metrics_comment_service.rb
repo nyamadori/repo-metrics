@@ -23,7 +23,7 @@ class MetricsCommentService
     pr = res.data.repository.pull_request
 
     merged_at = Time.parse(event_payload[:pull_request][:merged_at]).getlocal
-    first_committed_at = pr.commits.nodes.first.commit.committed_date
+    first_committed_at = Time.parse(pr.commits.nodes.first.commit.committed_date).getlocal
 
     (merged_at - first_committed_at) / 3600
   end
