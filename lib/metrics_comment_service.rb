@@ -13,17 +13,14 @@ class MetricsCommentService
   def self.collect_merge_time(event_payload)
     repo = event_payload[:repository][:name]
     pr_number = event_payload[:pull_request][:number]
+    owner = event_payload[:repository][:owner][:login]
 
     res = GitHubApi.query(
       GitHubApi::PullRequestWithFirstCommitQuery,
-      variables: { repo: repo, number: pr_number },
+      variables: { owner: owner, repo: repo, number: pr_number },
     )
 
-    p repo
-    p pr_number
-    p res
-
-    pr = res.data.viewer.repository.pull_request
+    pr = res.data.repository.pull_request
 
     merged_at = Time.parse(event_payload[:pull_request][:merged_at]).getlocal
     first_committed_at = pr.commits.nodes.first.commit.committed_date
