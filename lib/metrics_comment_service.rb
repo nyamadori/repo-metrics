@@ -19,6 +19,10 @@ class MetricsCommentService
       variables: { repo: repo, number: pr_number },
     )
 
+    p repo
+    p pr_number
+    p res
+
     pr = res.data.viewer.repository.pull_request
 
     merged_at = Time.parse(event_payload[:pull_request][:merged_at]).getlocal
