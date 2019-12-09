@@ -38,6 +38,41 @@ module GitHubApi
     }
   GRAPHQL
 
+  PullRequestCommitsWithAssociationsQuery = GitHubApi::Client.parse <<~GRAPHQL
+    query($owner: String!, $repo: String!, $number: Int!, $after: String) {
+      repository(owner: $owner, name: $repo) {
+        pullRequest(number: $number) {
+          commits(first: 100, after: $after) {
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            nodes {
+              commit {
+                committedDate
+                associatedPullRequests(first: 1) {
+                  nodes {
+                    number
+                    title
+                    mergedAt
+                    url
+                    commits(first: 1) {
+                      nodes {
+                        commit {
+                          committedDate
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  GRAPHQL
+
   AddCommentMutation = GitHubApi::Client.parse <<~GRAPHQL
     mutation($subject_id: ID!, $body: String!) {
       addComment(input: { subjectId: $subject_id, body: $body }) {
