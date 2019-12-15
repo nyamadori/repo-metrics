@@ -20,7 +20,7 @@ class MetricsCommentService
     owner = event_payload[:repository][:owner][:login]
 
     res = GitHubApi.query(
-      GitHubApi::PullRequestWithFirstCommitQuery,
+      GitHubApi::PullRequestCommitsWithAssociationsQuery,
       variables: { owner: owner, repo: repo, number: pr_number },
     )
 

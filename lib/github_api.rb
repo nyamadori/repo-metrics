@@ -22,22 +22,6 @@ module GitHubApi
   Schema = GraphQL::Client.load_schema(HTTP)
   Client = GraphQL::Client.new(schema: Schema, execute: HTTP)
 
-  PullRequestWithFirstCommitQuery = GitHubApi::Client.parse <<~GRAPHQL
-    query($owner: String!, $repo: String!, $number: Int!) {
-      repository(owner: $owner, name: $repo) {
-        pullRequest(number: $number) {
-          commits(first: 1) {
-            nodes {
-              commit {
-                committedDate
-              }
-            }
-          }
-        }
-      }
-    }
-  GRAPHQL
-
   PullRequestCommitsWithAssociationsQuery = GitHubApi::Client.parse <<~GRAPHQL
     query($owner: String!, $repo: String!, $number: Int!, $after: String) {
       repository(owner: $owner, name: $repo) {
